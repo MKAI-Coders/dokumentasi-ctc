@@ -140,7 +140,7 @@ function getState(val) {
     //$("#loader").show();
       $.ajax({
       type: "GET",
-      url: "/data/lokasi",
+      url: "data/lokasi",
       data:'provinsi='+val,
       success: function(data){
 

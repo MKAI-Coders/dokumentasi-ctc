@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\FormMultipleUpload;
+use App\Lokasi;
 
 class FormController extends Controller
 {
@@ -14,7 +15,26 @@ class FormController extends Controller
     public function index()
     {
         $data = FormMultipleUpload::all();
-        return view ('form_upload', compact('data'));
+
+        $data_lokasi = Lokasi::select('titik_lokasi')->orderBy('titik_lokasi')->get();
+
+        $data_provinsi = Lokasi::select('provinsi')->orderBy('provinsi')->distinct()->get();
+
+        return view ('form_upload', compact('data', 'data_lokasi', 'data_provinsi'));
+    }
+
+
+    public function peta()
+    {
+       
+        return view ('peta');
+    }
+
+    public function view_data()
+    {
+         $data = FormMultipleUpload::all();
+       
+        return view ('view_data',compact('data'));
     }
 
     /**
@@ -27,6 +47,25 @@ class FormController extends Controller
        
     }
 
+    public function get_lokasi(Request $request)
+    {
+        if($request->has('provinsi'))
+        {
+            $provinsi =  $request->provinsi;
+
+            $data_lokasi = Lokasi::select('titik_lokasi')->where('provinsi','=', $provinsi)->orderBy('titik_lokasi')->pluck('titik_lokasi');
+
+            //dd($data_lokasi);
+            $all = '<option value=""> -- Pilih Titik Lokasi -- </option>';
+            foreach($data_lokasi as $lokasi)
+            {
+                $all .= "<option value='$lokasi'>$lokasi</option>";
+            }
+            return $all;
+        }
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -36,12 +75,15 @@ class FormController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-                'filename' => 'required',
+                //'filename' => 'required',
                 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3048'
         ]);
         
+        $data[] = '';
+
         if($request->hasfile('filename'))
         {
+            
             foreach($request->file('filename') as $image)
             {
                 $name=$image->getClientOriginalName();
@@ -50,9 +92,22 @@ class FormController extends Controller
             }
         }
         
-        $Upload_model = new FormMultipleUpload;
-        $Upload_model->filename = json_encode($data);
-        $Upload_model->save();
+        $upload_model = new FormMultipleUpload;
+        //try
+        //{
+            $upload_model->filename = json_encode($data);
+       // } 
+        //catch (Exception $e) 
+       // {
+       // }
+
+        $upload_model->nama = $request->nama;
+        $upload_model->no_hp = $request->no_hp;
+        $upload_model->provinsi = $request->provinsi;
+        $upload_model->titik_lokasi = $request->titik_lokasi;
+        $upload_model->jml_peserta = $request->jml_peserta;
+        $upload_model->save();
+
         return back()->with('success', 'Foto Anda telah diunggah dengan sukses');
     }
 

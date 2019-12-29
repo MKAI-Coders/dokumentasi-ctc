@@ -15,7 +15,14 @@ class CreateFormMultipleUploadTable extends Migration
     {
         Schema::create('form_multiple_upload', function (Blueprint $table) {
             $table->bigIncrements('id');
+            
             $table->string('filename');
+            
+            $table->string('nama');
+            $table->string('no_hp');
+            $table->string('provinsi');
+            $table->string('titik_lokasi');
+            $table->integer('jml_peserta');
             $table->timestamps();
         });
     }

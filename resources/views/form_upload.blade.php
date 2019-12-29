@@ -48,8 +48,8 @@
 
 <h3 class="jumbotron"><i class="glyphicon glyphicon-upload"></i> LAPORAN CTC 2020</h3> 
 <center>
-<a href="/data" target="_blank" class="btn btn-sm btn-primary shadow-sm">Data</a> 
-<a href="/peta" target="_blank" class="btn btn-sm btn-primary shadow-sm">Peta</a> 
+<a href="data" target="_blank" class="btn btn-sm btn-primary shadow-sm">Data</a> 
+<a href="peta" target="_blank" class="btn btn-sm btn-primary shadow-sm">Peta</a> 
 </center>
 <form method="post" action="{{url('upload_data')}}" enctype="multipart/form-data">
   {{csrf_field()}}

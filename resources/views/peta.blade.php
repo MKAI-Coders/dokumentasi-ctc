@@ -38,7 +38,7 @@
 		["<b>Taman Layak Anak</b><br>Banten",-6.0106058,106.0411307],
 		["<b>Alun-alun Sukabumi</b><br>Jawa Barat",-6.9213879,106.9254978],
 
-		["<b>Lapangan Medan Merdeka</b><br>Sumatera",3.5920958,98.6772734,19.58]
+		["<b>Lapangan Medan Merdeka</b><br>Sumatera<br><a href=''>Data</a><br><img src='{{ asset('/image//74358519-6948-4f87-b873-d27b38e69080.jpg') }}' height='100px''>",3.5920958,98.6772734,19.58]
 
 		
 		

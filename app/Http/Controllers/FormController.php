@@ -79,7 +79,7 @@ class FormController extends Controller
                 'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3048'
         ]);
         
-        $data[] = '';
+        $data = array();
 
         if($request->hasfile('filename'))
         {
@@ -95,7 +95,14 @@ class FormController extends Controller
         $upload_model = new FormMultipleUpload;
         //try
         //{
+        if(count($data))
+        {
             $upload_model->filename = json_encode($data);
+        }
+        else
+        {
+            $upload_model->filename = '';
+        }
        // } 
         //catch (Exception $e) 
        // {

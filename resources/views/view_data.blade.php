@@ -56,9 +56,12 @@
         <td>{{$image->jml_peserta}}</td>
 
        
-           <td> <?php foreach (json_decode($image->filename)as $picture) { ?>
+           <td>
+           @if($image->filename != '')
+              <?php foreach (json_decode($image->filename) as $picture) { ?>
                  <img src="{{ asset('/image/'.$picture) }}" style="height:120px"/>
-                <?php } ?>
+              <?php } ?>
+            @endif
            </td>
       </tr>
         @endforeach

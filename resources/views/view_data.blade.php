@@ -7,7 +7,11 @@
   
   <title>Laporan CTC 2020</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="{{asset('css/img_modal.css')}}">
+
 
   <style>
   
@@ -55,11 +59,20 @@
         <td>{{$image->provinsi}}</td>
         <td>{{$image->jml_peserta}}</td>
 
-       
            <td>
            @if($image->filename != '')
               <?php foreach (json_decode($image->filename) as $picture) { ?>
-                 <img src="{{ asset('/image/'.$picture) }}" style="height:120px"/>
+<!--
+                 <a target='_blank' rel='noopener noreferrer' href="{{ asset('images/'.$picture) }}">
+
+                
+
+                </a>-->
+
+                  <img class='myImg' src="{{ asset('images/100/'.$picture) }}" style="height:80px"/>
+<!--
+<img id="myImg" src="{{ asset('images/100/'.$picture) }}" alt="Snow">
+-->
               <?php } ?>
             @endif
            </td>
@@ -71,6 +84,15 @@
    <center><a href="index.php" class="btn btn-sm btn-primary shadow-sm">Kembali</a></center>
 
   </div>
+
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+
+
+<script src="{{asset('js/img_modal.js')}}" type="text/javascript"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {

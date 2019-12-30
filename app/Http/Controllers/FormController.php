@@ -5,9 +5,26 @@ use Illuminate\Http\Request;
 use App\FormMultipleUpload;
 use App\Lokasi;
 
+use Carbon\Carbon;
+use Image;
+use File;
+
 class FormController extends Controller
 {
-    /**
+
+    public $path;
+    public $dimensions;
+
+    public function __construct()
+    {
+        //DEFINISIKAN PATH
+        $this->path = public_path().'/images'; //storage_path('app/public/images');
+        //DEFINISIKAN DIMENSI
+        $this->dimensions = ['100'];
+    }
+
+
+    /**use File;
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -83,11 +100,45 @@ class FormController extends Controller
 
         if($request->hasfile('filename'))
         {
+
+            if (!File::isDirectory($this->path)) {
+                //MAKA FOLDER TERSEBUT AKAN DIBUAT
+                File::makeDirectory($this->path);
+            }
+
             
-            foreach($request->file('filename') as $image)
+            foreach($request->file('filename') as $file)
             {
-                $name=$image->getClientOriginalName();
-                $image->move(public_path().'/image/', $name);  // your folder path
+                $name = Carbon::now()->timestamp . '_' . uniqid() . '.' . $file->getClientOriginalExtension(); //$image->getClientOriginalName();
+                //$image->move(public_path().'/image/', $name);  // your folder path
+
+                Image::make($file)->save($this->path . '/' . $name);
+
+                foreach ($this->dimensions as $row) {
+                    //MEMBUAT CANVAS IMAGE SEBESAR DIMENSI YANG ADA DI DALAM ARRAY 
+                    $canvas = Image::canvas($row, $row);
+                    //RESIZE IMAGE SESUAI DIMENSI YANG ADA DIDALAM ARRAY 
+                    //DENGAN MEMPERTAHANKAN RATIO
+                    // $resizeImage  = Image::make($file)->resize($row, $row, function($constraint) {
+                    //     $constraint->aspectRatio();
+                    // });
+
+                    $resizeImage  = Image::make($file)->resize(null, $row, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    
+                    //CEK JIKA FOLDERNYA BELUM ADA
+                    if (!File::isDirectory($this->path . '/' . $row)) {
+                        //MAKA BUAT FOLDER DENGAN NAMA DIMENSI
+                        File::makeDirectory($this->path . '/' . $row);
+                    }
+                    
+                    //MEMASUKAN IMAGE YANG TELAH DIRESIZE KE DALAM CANVAS
+                    $canvas->insert($resizeImage, 'center');
+                    //SIMPAN IMAGE KE DALAM MASING-MASING FOLDER (DIMENSI)
+                    $canvas->save($this->path . '/' . $row . '/' . $name);
+                }
+
                 $data[] = $name;  
             }
         }

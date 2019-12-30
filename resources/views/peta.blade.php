@@ -82,7 +82,7 @@
 		map.addLayer(layer);
 
 		for (var i = 0; i < locations0.length; i++) {
-			marker = new L.marker([locations0[i][1],locations0[i][2]], {icon: redIcon})
+			marker = new L.marker([locations0[i][1],locations0[i][2]])
 				.bindPopup(locations0[i][0])
 				.addTo(map);
 		}

@@ -50,8 +50,8 @@
 
 <h3 class="jumbotron"><i class="glyphicon glyphicon-upload"></i> LAPORAN CTC 2020</h3> 
 <center>
-<a href="data" target="_blank" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-database" aria-hidden="true"></i> Data</a> 
-<a href="peta" target="_blank" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-map-marker" aria-hidden="true"></i> Peta</a> 
+<a href="data" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-database" aria-hidden="true"></i> Data</a> 
+<a href="peta" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-map-marker" aria-hidden="true"></i> Peta</a> 
 <a href="https://ctc.khuddam.id/twitter/" target="_blank" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a> 
 </center>
 <form method="post" action="{{url('upload_data')}}" enctype="multipart/form-data">
@@ -99,7 +99,8 @@
      </div>  
           
     <div class="form-group">
-      <label for="bulan_alm_1">Foto</label>  
+      <label for="bulan_alm_1">Foto</label> 
+
         <div class="input-group control-group increment" >
           <input type="file" name="filename[]" class="form-control" accept="image/x-png,image/gif,image/jpeg">
           <div class="input-group-btn"> 
@@ -115,6 +116,8 @@
             </div>
           </div>
         </div>
+        </br>
+        <small>Maksimum 5 Foto, dengan total ukuran 25 MB </small>
      </div>           
     </br>
      <button type="submit" class="btn btn-info btn-lg center-block" style="margin-top:12px"><i class="glyphicon glyphicon-check "></i> Kirim</button>

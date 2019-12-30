@@ -10,7 +10,7 @@
 <style type="text/css">
 	#mapid {
 		margin: 0 auto 0 auto;
-		height: 85%;
+		height: 80%;
 		
 	}
 	html, body {
@@ -27,6 +27,8 @@
 </div>
 
 <div id="mapid" ></div>
+</br>
+<center><a href="index.php" class="btn btn-sm btn-primary shadow-sm">Kembali</a></center>
 
 <script type="text/javascript">
 

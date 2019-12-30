@@ -68,6 +68,8 @@
     </tbody>
    </table>
 
+   <center><a href="index.php" class="btn btn-sm btn-primary shadow-sm">Kembali</a></center>
+
   </div>
 
 <script type="text/javascript">

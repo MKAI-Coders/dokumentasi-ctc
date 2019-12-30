@@ -43,13 +43,33 @@ class FormController extends Controller
 
     public function peta()
     {
+        $data_lokasi0 = Lokasi::where('jml_peserta','0')->get();
+
+        $data_lokasi1 = Lokasi::where('jml_peserta','!=','0')->get();
+
+        $location0 = '';
+        $location1 = '';
+
+        foreach($data_lokasi0 as $l)
+        {
+            $location0 .= "['<b>$l->titik_lokasi</b><br>$l->provinsi',$l->lat,$l->lon],";
+        }
+
+
+        foreach($data_lokasi1 as $l)
+        {
+            $location1 .= "['<b>$l->titik_lokasi</b><br>$l->provinsi<br><small>Jumlah peserta : $l->jml_peserta</small>',$l->lat,$l->lon],";
+        }
+
+        //dd($data_lokasi0);
+
        
-        return view ('peta');
+        return view ('peta', compact('location0', 'location1'));
     }
 
     public function view_data()
     {
-         $data = FormMultipleUpload::all();
+        $data = FormMultipleUpload::all();
        
         return view ('view_data',compact('data'));
     }
@@ -100,12 +120,10 @@ class FormController extends Controller
 
         if($request->hasfile('filename'))
         {
-
             if (!File::isDirectory($this->path)) {
                 //MAKA FOLDER TERSEBUT AKAN DIBUAT
                 File::makeDirectory($this->path);
             }
-
             
             foreach($request->file('filename') as $file)
             {
@@ -122,7 +140,6 @@ class FormController extends Controller
                     // $resizeImage  = Image::make($file)->resize($row, $row, function($constraint) {
                     //     $constraint->aspectRatio();
                     // });
-
                     $resizeImage  = Image::make($file)->resize(null, $row, function ($constraint) {
                         $constraint->aspectRatio();
                     });
@@ -144,8 +161,7 @@ class FormController extends Controller
         }
         
         $upload_model = new FormMultipleUpload;
-        //try
-        //{
+
         if(count($data))
         {
             $upload_model->filename = json_encode($data);
@@ -154,10 +170,6 @@ class FormController extends Controller
         {
             $upload_model->filename = '';
         }
-       // } 
-        //catch (Exception $e) 
-       // {
-       // }
 
         $upload_model->nama = $request->nama;
         $upload_model->no_hp = $request->no_hp;
@@ -165,6 +177,13 @@ class FormController extends Controller
         $upload_model->titik_lokasi = $request->titik_lokasi;
         $upload_model->jml_peserta = $request->jml_peserta;
         $upload_model->save();
+
+        if($request->jml_peserta > 0)
+        {
+            $lokasi = Lokasi::where('titik_lokasi', $request->titik_lokasi)->update(['jml_peserta' => $request->jml_peserta]);
+            //$lokasi->jml_peserta = $request->jml_peserta;
+           // $lokasi->save();
+        }
 
         return back()->with('success', 'Foto Anda telah diunggah dengan sukses');
     }

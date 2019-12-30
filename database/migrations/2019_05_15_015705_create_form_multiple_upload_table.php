@@ -22,7 +22,7 @@ class CreateFormMultipleUploadTable extends Migration
             $table->string('no_hp');
             $table->string('provinsi');
             $table->string('titik_lokasi');
-            $table->integer('jml_peserta');
+            $table->integer('jml_peserta')->nullable();
             $table->timestamps();
         });
     }

@@ -72,7 +72,7 @@ return [
     ],
     'lte' => [
         'numeric' => 'The :attribute must be less than or equal :value.',
-        'file' => 'The :attribute must be less than or equal :value kilobytes.',
+        'file' => 'File satu foto harus kurang dari atau sama dengan :value kilobytes.',
         'string' => 'The :attribute must be less than or equal :value characters.',
         'array' => 'The :attribute must not have more than :value items.',
     ],

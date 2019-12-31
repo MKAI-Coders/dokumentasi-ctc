@@ -60,6 +60,7 @@
 <a href="peta" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-map-marker" aria-hidden="true"></i> Peta</a> 
 <a href="https://ctc.khuddam.id/twitter/" target="_blank" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a> 
 </center>
+</br>
 <form method="post" action="{{url('upload_data')}}" enctype="multipart/form-data">
   {{csrf_field()}}
     

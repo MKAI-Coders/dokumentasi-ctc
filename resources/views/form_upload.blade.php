@@ -224,7 +224,7 @@
                         swal({
                 type: 'warning',
                 title: 'Kode tidak benar, jika sebagai koordinator, silakan hubungi',
-                html: '</br><p style="font-size:18px">Fazal Ahmad</br><i class="fa fa-whatsapp"></i> <a href="https://api.whatsapp.com/send?phone=8567304984">08567304984</a></font>',
+                html: '</br><p style="font-size:18px">Fazal Ahmad</br><i class="fa fa-whatsapp"></i> <a href="https://api.whatsapp.com/send?phone=628567304984">08567304984</a></font>',
                 //footer: 'Kontak Narahubung',
                 onClose: () => {
 

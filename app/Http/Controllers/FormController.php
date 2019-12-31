@@ -75,7 +75,7 @@ class FormController extends Controller
 
     public function view_data()
     {
-        $data = FormMultipleUpload::all();
+        $data = FormMultipleUpload::orderBy('id', 'desc')->paginate(10);
        
         return view ('view_data',compact('data'));
     }

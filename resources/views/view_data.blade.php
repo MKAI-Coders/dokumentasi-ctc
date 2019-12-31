@@ -31,6 +31,9 @@
 <body><br>
 <div class="container">
    <h4><i class="glyphicon glyphicon-picture"></i> Dokumentasi Foto dari Anggota </h4>
+
+   Jumlah Data : {{ $data->total() }} <br/>
+</br>
    <table class="table table-bordered table-hover table-striped">
     <thead>
 
@@ -42,12 +45,13 @@
 
     </thead>
     <tbody>
+      <?php $i= ($data->currentPage()-1)*10 + 1;?>
 
         @foreach($data as $image)
 
       <tr>
 
-        <td>{{$image->id}}</td>
+        <td>{{$i}}</td>
         <td>{{$image->nama}}</td>
         <td>{{$image->titik_lokasi}}</br>{{$image->provinsi}}</td>
            <td>
@@ -59,11 +63,14 @@
             @endif
            </td>
       </tr>
+      <?php $i++; ?>
         @endforeach
     </tbody>
    </table>
 
-   <center><a href="index.php" class="btn btn-sm btn-primary shadow-sm">Kembali</a></center>
+  
+
+   <center>{{ $data->links() }} </br><a href="index.php" class="btn btn-sm btn-primary shadow-sm">Kembali</a></center>
 
   </div>
 

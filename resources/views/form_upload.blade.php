@@ -56,9 +56,11 @@
 <h3 class="jumbotron"><i class="glyphicon glyphicon-upload"></i> CLEAN THE CITY 2020</h3> 
 <center>
 <a href="data" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-desktop" aria-hidden="true"></i> Anggota</a> 
-<a href="data_koordinator" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-database" aria-hidden="true"></i> Koordinator</a>
+<!--<a href="data_koordinator" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-database" aria-hidden="true"></i> Koordinator</a>-->
 <a href="peta" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-map-marker" aria-hidden="true"></i> Peta</a> 
-<a href="https://ctc.khuddam.id/twitter/" target="_blank" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a> 
+<a href="https://ctc.khuddam.id/twitter/" target="_blank" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
+
+<a href="https://ctc.khuddam.id/instagram/" target="_blank" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a>  
 </center>
 </br>
 <form method="post" action="{{url('upload_data')}}" enctype="multipart/form-data">

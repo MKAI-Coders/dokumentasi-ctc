@@ -55,7 +55,7 @@
 
 <h3 class="jumbotron"><i class="glyphicon glyphicon-upload"></i> CLEAN THE CITY 2020</h3> 
 <center>
-<a href="data" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-desktop" aria-hidden="true"></i> Anggota</a> 
+<a href="data" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-desktop" aria-hidden="true"></i> Data</a> 
 <!--<a href="data_koordinator" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-database" aria-hidden="true"></i> Koordinator</a>-->
 <a href="peta" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-map-marker" aria-hidden="true"></i> Peta</a> 
 <a href="https://ctc.khuddam.id/twitter/" target="_blank" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
@@ -108,7 +108,14 @@
           </label>
     </div>
 
-    <div id="show_for_koordinator">
+
+
+    <div id="show_for_koordinator"></br>
+      <center>
+      <a href="data_koordinator" target="_blank" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-database" aria-hidden="true"></i> Dokumentasi Koordinator</a>
+      </center>
+      </br>
+
      <div class="form-group">
         <label for="">Jumlah Peserta <span style="color: red">*</span></label>            
         <input type="number" class="form-control label_koordinator" name="jml_peserta" placeholder="Jumlah Peserta">

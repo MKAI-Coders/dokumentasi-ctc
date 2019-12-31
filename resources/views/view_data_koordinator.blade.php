@@ -48,11 +48,13 @@
     </thead>
     <tbody>
 
+      <?php $i = 1; ?>
+
       @foreach($data as $image)
 
       <tr>
 
-        <td>{{$image->id}}</td>
+        <td>{{$i}}</td>
         <td>{{$image->nama}}</td>
         <td>{{$image->no_hp}}</td>
         <td>{{$image->titik_lokasi}}</td>
@@ -89,6 +91,7 @@
            
            </td>
       </tr>
+      <?php $i++; ?>
         @endforeach
     </tbody>
    </table>

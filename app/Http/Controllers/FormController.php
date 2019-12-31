@@ -82,7 +82,7 @@ class FormController extends Controller
 
     public function view_data_koordinator()
     {
-        $data = Lokasi::all();
+        $data = Lokasi::orderBy('provinsi')->get();
        
         return view ('view_data_koordinator', compact('data'));
     }

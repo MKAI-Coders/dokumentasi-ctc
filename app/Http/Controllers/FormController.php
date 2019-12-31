@@ -55,15 +55,12 @@ class FormController extends Controller
             $location0 .= "['<b>$l->titik_lokasi</b><br>$l->provinsi',$l->lat,$l->lon],";
         }
 
-
         foreach($data_lokasi1 as $l)
         {
-            $location1 .= "['<b>$l->titik_lokasi</b><br>$l->provinsi<br><small>Jumlah peserta : $l->jml_peserta</small>',$l->lat,$l->lon],";
+            $location1 .= "['<b>$l->titik_lokasi</b><br>$l->provinsi<br><small>Jumlah peserta : $l->jml_peserta</small></br></br><a href=\'data_titik_lokasi?titik_lokasi=$l->titik_lokasi\' target=\'_blank\'>Link Foto</a>',$l->lat,$l->lon],";
         }
 
         //dd($data_lokasi0);
-
-       
         return view ('peta', compact('location0', 'location1'));
     }
 
@@ -74,6 +71,25 @@ class FormController extends Controller
         return view ('view_data',compact('data'));
     }
 
+    public function view_data_koordinator()
+    {
+        $data = Lokasi::all();
+       
+        return view ('view_data_koordinator', compact('data'));
+    }
+
+    public function view_titik_lokasi(Request $request)
+    {
+        if($request->has('titik_lokasi'))
+        {
+            $titik_lokasi = $request->titik_lokasi;
+
+            $data = Lokasi::where('titik_lokasi',$titik_lokasi)->get();
+       
+            return view ('view_titik_lokasi', compact('data'));
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -82,6 +98,21 @@ class FormController extends Controller
     public function create()
     {
        
+    }
+
+    public function check_kode_pin(Request $request)
+    {
+        if($request->has('pin'))
+        {
+            if($request->pin == 'fazal')
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 
     public function get_lokasi(Request $request)
@@ -180,12 +211,22 @@ class FormController extends Controller
 
         if($request->jml_peserta > 0)
         {
-            $lokasi = Lokasi::where('titik_lokasi', $request->titik_lokasi)->update(['jml_peserta' => $request->jml_peserta]);
+            $lokasi = Lokasi::where('titik_lokasi', $request->titik_lokasi)->update([
+
+                'jml_peserta' => $request->jml_peserta,
+                'nama' => $request->nama,
+                'no_hp' => $request->no_hp,
+                'reportase1' => urlencode($request->reportase1),
+                'reportase2' => urlencode($request->reportase2),
+                'reportase3' => urlencode($request->reportase3),
+                'reportase4' => urlencode($request->reportase4),
+
+                ]);
             //$lokasi->jml_peserta = $request->jml_peserta;
            // $lokasi->save();
         }
 
-        return back()->with('success', 'Foto Anda telah diunggah dengan sukses');
+        return back()->with('success', 'Data Anda telah diunggah dengan sukses');
     }
 
     /**

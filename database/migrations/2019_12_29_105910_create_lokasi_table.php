@@ -19,7 +19,13 @@ class CreateLokasiTable extends Migration
             $table->string('provinsi');
             $table->string('lat');
             $table->string('lon');
+            $table->string('nama')->nullable();
+            $table->string('no_hp')->nullable();
             $table->integer('jml_peserta')->nullable()->default(0);
+            $table->text('reportase1')->nullable();
+            $table->text('reportase2')->nullable();
+            $table->text('reportase3')->nullable();
+            $table->text('reportase4')->nullable();
             $table->timestamp('updated_at');
         });
 

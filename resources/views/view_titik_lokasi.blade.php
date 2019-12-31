@@ -6,64 +6,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
   <title>Laporan CTC 2020</title>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
   <link rel="stylesheet" href="{{asset('css/img_modal.css')}}">
 
+
   <style>
+  
+  @media (min-width: 1200px) 
+  {
+    .container2{
+      max-width: 600px;
 
-    @media (min-width: 1200px) 
-    {
-      .container2{
-        max-width: 600px;
-
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto;
-      }
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
     }
-
+  }
   </style>
 
 </head>
 <body><br>
 <div class="container">
-   <h4><i class="glyphicon glyphicon-picture"></i> Dokumentasi Foto dari Anggota </h4>
+
+
+      @foreach($data as $image)
+
+         <h4><i class="glyphicon glyphicon-picture"></i> {{$image->titik_lokasi}} - {{$image->provinsi}}</h4>
+
    <table class="table table-bordered table-hover table-striped">
     <thead>
 
-    <tr><th>#</th>
-        <th>Nama</th>
-        <th>Titik Lokasi</th>
-        <th>Foto</th>
+    <tr>
+        <th>Kumpulan Foto</th>
     </tr>
 
     </thead>
     <tbody>
 
-        @foreach($data as $image)
-
       <tr>
 
-        <td>{{$image->id}}</td>
-        <td>{{$image->nama}}</td>
-        <td>{{$image->titik_lokasi}}</br>{{$image->provinsi}}</td>
            <td>
-           @if($image->filename != '')
-              <?php foreach (json_decode($image->filename) as $picture) { ?>
-                  <img class='myImg' src="{{ asset('images/100/'.$picture) }}" style="height:80px"/>
+
+             @if($image->form_data != '')
+              <?php foreach ($image->form_data as $picture) { ?>
+                  @if($picture['filename'] != '')
+                    <?php foreach (json_decode($picture['filename']) as $img) { ?>
+
+                    <img class='myImg' src="{{ asset('images/100/'.$img) }}" style="height:80px"/>
+
+                    <?php } ?>
+                  @endif
               <?php } ?>
 
             @endif
+
+           
+           
            </td>
       </tr>
         @endforeach
     </tbody>
    </table>
 
-   <center><a href="index.php" class="btn btn-sm btn-primary shadow-sm">Kembali</a></center>
+   <center><a href="peta" class="btn btn-sm btn-primary shadow-sm">Kembali</a></center>
 
   </div>
 

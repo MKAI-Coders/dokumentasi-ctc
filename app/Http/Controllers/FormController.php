@@ -153,7 +153,7 @@ class FormController extends Controller
     {
         $this->validate($request, [
                 //'filename' => 'required',
-                'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000'
+                'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'  #
         ]);
         
         $data = array();

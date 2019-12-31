@@ -162,13 +162,17 @@
   </form>
 
 </div>
-   <br>
+   <center>
+</br>
+<hr>
+<b>Narahubung</b></br>
+
+ Fazal Ahmad (<i class="fa fa-whatsapp"></i> <a href="https://api.whatsapp.com/send?phone=628567304984">08567304984</a>) <!--| <a href="https://api.whatsapp.com/send?phone=6281380455566">081380455566</a>-->
+</center>
 
   </div>
 
 <script type="text/javascript">
-
-
     $('#show_for_koordinator').css('display', 'none');
     $(".input_foto").prop('required',true);
 
@@ -214,7 +218,22 @@
                       }
                       else
                       {
-                        ckbox.prop("checked", false);
+                        //ckbox.prop("checked", false);
+
+
+                        swal({
+                type: 'warning',
+                title: 'Kode tidak benar, jika sebagai koordinator, silakan hubungi',
+                html: '</br><p style="font-size:18px">Fazal Ahmad</br><i class="fa fa-whatsapp"></i> <a href="https://api.whatsapp.com/send?phone=8567304984">08567304984</a></font>',
+                //footer: 'Kontak Narahubung',
+                onClose: () => {
+
+                  ckbox.prop("checked", false);
+                }
+ 
+              });
+
+
                       }
                     }
                   });
@@ -223,7 +242,13 @@
                 allowOutsideClick: false
               }).then((result) => {
                // if (result.value) {
+
+
                   ckbox.prop("checked", false);
+              
+              
+
+                  
               });
           
 

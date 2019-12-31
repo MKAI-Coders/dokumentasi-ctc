@@ -64,8 +64,6 @@
 
             @endif
 
-           
-           
            </td>
       </tr>
         @endforeach

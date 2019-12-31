@@ -43,22 +43,31 @@ class FormController extends Controller
 
     public function peta()
     {
-        $data_lokasi0 = Lokasi::where('jml_peserta','0')->get();
+        $data_lokasi0 = Lokasi::join('form_multiple_upload', 'lokasi.titik_lokasi', '=', 'form_multiple_upload.titik_lokasi', 'left outer')
+        ->whereNull('form_multiple_upload.titik_lokasi')
+        ->select(\DB::raw('lokasi.titik_lokasi as lk'),\DB::raw('lokasi.provinsi as pv'),\DB::raw('lokasi.lat as lat'),\DB::raw('lokasi.lon as lon'))
+        ->get();
 
-        $data_lokasi1 = Lokasi::where('jml_peserta','!=','0')->get();
+       
+
+        //$data_lokasi1 = Lokasi::where('jml_peserta','!=','0')->get();
+
+        $data_lokasi1 = Lokasi::join('form_multiple_upload', 'lokasi.titik_lokasi', '=', 'form_multiple_upload.titik_lokasi')->where('form_multiple_upload.filename','!=','')->get();
 
         $location0 = '';
         $location1 = '';
 
         foreach($data_lokasi0 as $l)
         {
-            $location0 .= "['<b>$l->titik_lokasi</b><br>$l->provinsi',$l->lat,$l->lon],";
+            $location0 .= "['<b>$l->lk</b><br>$l->pv',$l->lat,$l->lon],";
         }
 
-        foreach($data_lokasi1 as $l)
+        foreach($data_lokasi1 as $l) //<small>Jumlah peserta : $l->jml_peserta</small></br>
         {
             $location1 .= "['<b>$l->titik_lokasi</b><br>$l->provinsi<br><small>Jumlah peserta : $l->jml_peserta</small></br></br><a href=\'data_titik_lokasi?titik_lokasi=$l->titik_lokasi\' target=\'_blank\'>Link Foto</a>',$l->lat,$l->lon],";
         }
+
+        // dd($location0);
 
         //dd($data_lokasi0);
         return view ('peta', compact('location0', 'location1'));

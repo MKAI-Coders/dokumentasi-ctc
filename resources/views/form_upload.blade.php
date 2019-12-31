@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <title>Laporan CTC 2020</title>
+  <title>CLEAN THE CITY 2020</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
@@ -53,10 +53,10 @@
         </div> 
       @endif
 
-<h3 class="jumbotron"><i class="glyphicon glyphicon-upload"></i> LAPORAN CTC 2020</h3> 
+<h3 class="jumbotron"><i class="glyphicon glyphicon-upload"></i> CLEAN THE CITY 2020</h3> 
 <center>
 <a href="data" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-desktop" aria-hidden="true"></i> Anggota</a> 
-<a href="data_koordinator" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-database" aria-hidden="true"></i> Koordinator</a> 
+<a href="data_koordinator" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-database" aria-hidden="true"></i> Koordinator</a>
 <a href="peta" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-map-marker" aria-hidden="true"></i> Peta</a> 
 <a href="https://ctc.khuddam.id/twitter/" target="_blank" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a> 
 </center>

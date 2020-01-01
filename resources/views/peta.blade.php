@@ -28,9 +28,9 @@
 <div align="center">
 	<h3>Peta Kegiatan Clean The City 2020</h3>
 </div>
-<center>
+<!--<center>
 {{$jml_foto_ada}} dari {{$jml_lokasi}} titik lokasi sudah mengupload foto kegiatan
-</center>
+</center>-->
 <div id="mapid" ></div>
 </br>
 <center><a href="index.php" class="btn btn-sm btn-primary shadow-sm">Kembali</a></center>

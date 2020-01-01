@@ -16,6 +16,9 @@
 	html, body {
         height: 100%;
       }
+
+
+
 </style>
 
 </head>
@@ -23,9 +26,11 @@
 
 
 <div align="center">
-	<h2>Peta Kegiatan Clean The City 2020</h2>
+	<h3>Peta Kegiatan Clean The City 2020</h3>
 </div>
-
+<center>
+{{$jml_foto_ada}} dari {{$jml_lokasi}} titik lokasi sudah mengupload foto kegiatan
+</center>
 <div id="mapid" ></div>
 </br>
 <center><a href="index.php" class="btn btn-sm btn-primary shadow-sm">Kembali</a></center>

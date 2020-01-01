@@ -37,7 +37,32 @@ class FormController extends Controller
 
         $data_provinsi = Lokasi::select('provinsi')->orderBy('provinsi')->distinct()->get();
 
-        return view ('form_upload', compact('data', 'data_lokasi', 'data_provinsi'));
+        $data_lokasi0 = Lokasi::join('form_multiple_upload', 'lokasi.titik_lokasi', '=', 'form_multiple_upload.titik_lokasi', 'left outer')
+        ->whereNull('form_multiple_upload.titik_lokasi')
+        ->get();
+
+        $data_lokasi1 = Lokasi::join('form_multiple_upload', 'lokasi.titik_lokasi', '=', 'form_multiple_upload.titik_lokasi')
+            ->where('form_multiple_upload.filename','!=','')
+            ->select(\DB::raw('form_multiple_upload.filename as file'))
+            ->get();
+
+        $jml_foto = 0;
+
+        foreach($data_lokasi1 as $l)
+        {
+            foreach(json_decode($l->file) as $d)
+            {
+                $jml_foto++;
+            }
+        }
+
+        $jml_foto_ada = count($data_lokasi1);
+        $jml_foto_blm = count($data_lokasi0);
+
+        $jml_lokasi = $jml_foto_ada + $jml_foto_blm;
+
+
+        return view ('form_upload', compact('data', 'data_lokasi', 'data_provinsi', 'jml_foto_ada','jml_lokasi', 'jml_foto'));
     }
 
 
@@ -47,8 +72,6 @@ class FormController extends Controller
         ->whereNull('form_multiple_upload.titik_lokasi')
         ->select(\DB::raw('lokasi.titik_lokasi as lk'),\DB::raw('lokasi.provinsi as pv'),\DB::raw('lokasi.lat as lat'),\DB::raw('lokasi.lon as lon'))
         ->get();
-
-       
 
         //$data_lokasi1 = Lokasi::where('jml_peserta','!=','0')->get();
 
@@ -67,10 +90,16 @@ class FormController extends Controller
             $location1 .= "['<b>$l->titik_lokasi</b><br>$l->provinsi<br><small>Jumlah peserta : $l->jml_peserta</small></br></br><a href=\'data_titik_lokasi?titik_lokasi=$l->titik_lokasi\' target=\'_blank\'>Link Foto</a>',$l->lat,$l->lon],";
         }
 
+
+        $jml_foto_ada = count($data_lokasi1);
+        $jml_foto_blm = count($data_lokasi0);
+
+        $jml_lokasi = $jml_foto_ada + $jml_foto_blm;
+
         // dd($location0);
 
         //dd($data_lokasi0);
-        return view ('peta', compact('location0', 'location1'));
+        return view ('peta', compact('location0', 'location1', 'jml_foto_ada','jml_lokasi'));
     }
 
     public function view_data()

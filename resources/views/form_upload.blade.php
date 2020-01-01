@@ -29,6 +29,17 @@
       margin-left: auto;
     }
   }
+
+  .card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+
+
+
+
   </style>
 
 </head>
@@ -54,7 +65,15 @@
       @endif
 
 <h3 class="jumbotron"><i class="glyphicon glyphicon-upload"></i> CLEAN THE CITY 2020</h3> 
+
+
+
 <center>
+
+  <b>Sudah ada <font style='color:blue;'>{{$jml_foto}}</font> foto dari <font style='color:blue;'>{{$jml_foto_ada}} / {{$jml_lokasi}}</font> lokasi.</br>Apakah selanjutnya lokasi anda?</b>
+
+</br></br>
+
 <a href="data" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-desktop" aria-hidden="true"></i> Data</a> 
 <!--<a href="data_koordinator" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-database" aria-hidden="true"></i> Koordinator</a>-->
 <a href="peta" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-map-marker" aria-hidden="true"></i> Peta</a> 

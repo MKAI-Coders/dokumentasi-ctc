@@ -69,10 +69,12 @@
 
 
 <center>
-
+<!--
   <b>Sudah ada <font style='color:blue;'>{{$jml_foto}}</font> foto dari <font style='color:blue;'>{{$jml_foto_ada}} / {{$jml_lokasi}}</font> lokasi.</br>Apakah selanjutnya lokasi anda?</b>
 
 </br></br>
+-->
+
 
 <a href="data" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-desktop" aria-hidden="true"></i> Data</a> 
 <!--<a href="data_koordinator" class="btn btn-sm btn-primary shadow-sm"><i class="fa fa-database" aria-hidden="true"></i> Koordinator</a>-->
